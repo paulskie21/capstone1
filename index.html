@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f6fa">
+    <title>Barangay 177</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#dashboard" aria-label="BRGY 177">
+          <span class="brand-mark"></span>
+          <span class="brand-name">BRGY 177<span>.</span></span>
+        </a>
+        <div class="workspace-label">WORKSPACE</div>
+        <nav class="navigation" id="navigation" aria-label="Main navigation"></nav>
+        <div class="sidebar-bottom">
+          <div class="support-card">
+            <div class="support-icon">?</div>
+            <div><strong>Need a hand?</strong><span>Visit the help center</span></div>
+            <span class="support-arrow">↗</span>
+          </div>
+          <button class="profile-button" type="button">
+            <span class="avatar avatar-purple">AM</span>
+            <span class="profile-copy"><strong>HR</strong><small>HR administrator</small></span>
+            <span class="profile-dots">···</span>
+          </button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <header class="topbar">
+          <button class="mobile-menu" id="menuToggle" type="button" aria-label="Toggle navigation">☰</button>
+          <div class="breadcrumb"><span>Workspace</span><span class="breadcrumb-slash">/</span><strong id="breadcrumbCurrent">Dashboard</strong></div>
+          <div class="topbar-actions">
+            <label class="global-search"><span aria-hidden="true">⌕</span><input id="globalSearch" type="search" placeholder="Search anything..." aria-label="Search current module"></label>
+            <button class="icon-button notification-button" type="button" aria-label="Notifications">♧<i></i></button>
+            <span class="topbar-divider"></span>
+            <span class="today-label" id="todayLabel"></span>
+          </div>
+        </header>
+        <section class="page-content" id="pageContent" aria-live="polite"></section>
+      </main>
+    </div>
+    <div class="modal-backdrop" id="modalBackdrop" hidden>
+      <section class="record-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-heading">
+          <div><span class="eyebrow">RECORD DETAILS</span><h2 id="modalTitle">Add record</h2></div>
+          <button class="icon-button close-modal" id="closeModal" type="button" aria-label="Close dialog">×</button>
+        </div>
+        <form id="recordForm">
+          <div class="form-grid" id="formFields"></div>
+          <div class="modal-footer">
+            <button class="button button-quiet" id="cancelModal" type="button">Cancel</button>
+            <button class="button button-primary" type="submit" id="saveRecord">Save record</button>
+          </div>
+        </form>
+      </section>
+    </div>
+    <div class="modal-backdrop" id="cameraBackdrop" hidden>
+      <section class="record-modal camera-modal" role="dialog" aria-modal="true" aria-labelledby="cameraTitle">
+        <div class="modal-heading">
+          <div><span class="eyebrow">ON-SITE ATTENDANCE</span><h2 id="cameraTitle">Camera face check-in</h2></div>
+          <button class="icon-button" id="closeCamera" type="button" aria-label="Close camera check-in">×</button>
+        </div>
+        <p class="camera-disclosure" id="cameraDisclosure">With permission, the local recognition service scans camera frames and matches a face to an enrolled employee. Frames are processed locally and are not saved.</p>
+        <div class="camera-fields">
+          <div class="form-field" id="onsiteEmployeeField" hidden>
+            <label for="onsiteEmployee">Employee</label>
+            <select id="onsiteEmployee" required></select>
+          </div>
+          <label class="camera-consent">
+            <input id="cameraConsent" type="checkbox">
+            <span id="cameraConsentText">I have permission to scan my face for this check-in.</span>
+          </label>
+        </div>   
+        <div class="camera-stage">
+          <video id="cameraVideo" autoplay playsinline hidden></video>
+          <img id="cameraPreview" alt="Temporary check-in photo preview" hidden>
+          <p id="cameraPlaceholder">Your camera preview will appear here.</p>
+        </div>
+        <p class="camera-match" id="cameraMatch" role="status" aria-live="polite"></p>
+        <p class="camera-error" id="cameraError" role="status" aria-live="polite"></p>
+        <div class="modal-footer camera-footer">
+          <button class="button button-quiet" id="cancelCamera" type="button">Cancel</button>
+          <button class="button button-quiet" id="removeFace" type="button" hidden>Remove enrollment</button>
+          <button class="button" id="startCamera" type="button">Start camera scan</button>
+          <button class="button" id="capturePhoto" type="button" disabled hidden>Capture and enroll</button>
+          <button class="button button-primary" id="confirmCheckIn" type="button" disabled hidden>Confirm check-in</button>
+        </div>
+      </section>
+    </div>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"></script>
+    <script src="js/modules/dashboard.js"></script>
+    <script src="js/modules/employees.js"></script>
+    <script src="js/modules/attendance.js"></script>
+    <script src="js/modules/facial-logs.js"></script>
+    <script src="js/modules/shifts.js"></script>
+    <script src="js/modules/leave-requests.js"></script>
+    <script src="js/modules/fatigue-forecasting.js"></script>
+    <script src="js/modules/reports.js"></script>
+    <script src="js/modules/settings.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
